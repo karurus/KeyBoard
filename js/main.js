@@ -3,41 +3,45 @@ function main() {
     var caps = false;
 
     $("td").hover(function () {
-        $(this).css('cursor','pointer');
-    }, function() {
-        $(this).css('cursor','auto');
+        $(this).css('cursor', 'pointer');
+    }, function () {
+        $(this).css('cursor', 'auto');
     });
 
     $("td").click(function () {
         var input = $(this).text();
         if (input == "Shift") {
+            if (caps == true) {
+                $("#caps").css('background-color', '#FFFFFF');
+                caps = false;
+            }
             if (shift == true) {
                 $(this).css('background-color', '#FFFFFF');
                 shift = false;
             } else {
-                $(this).css('background-color', '#DDDDDD');
+                $(this).css('background-color', '#ABC4E2');
                 shift = true;
             }
         }
         else if (input == "Del") {
             var txt = document.getElementById("input").value;
-            document.getElementById("input").value = txt.substring(0,txt.length-1);
-            
+            document.getElementById("input").value = txt.substring(0, txt.length - 1);
+
         }
         else if (input == "Caps") {
             if (caps == true) {
                 $(this).css('background-color', '#FFFFFF');
                 caps = false;
             } else {
-                $(this).css('background-color', '#DDDDDD');
+                $(this).css('background-color', '#ABC4E2');
                 caps = true;
             }
         }
-        else if (input =="Space"){
+        else if (input == "Space") {
             var space = " ";
-            document.getElementById("input").value = document.getElementById("input").value+space;
+            document.getElementById("input").value = document.getElementById("input").value + space;
         }
-        else if (input == "Enter"){
+        else if (input == "Enter") {
             var txt = "OK";
             document.getElementById("input").value = txt;
         }
@@ -48,18 +52,17 @@ function main() {
             } else {
                 input = input.toLowerCase();
             }
-            if(document.getElementById("input").value=="OK")
-                {
-                    document.getElementById("input").value="";
-                }
-            var output = document.getElementById("input").value+ input;
+            if (document.getElementById("input").value == "OK") {
+                document.getElementById("input").value = "";
+            }
+            var output = document.getElementById("input").value + input;
             document.getElementById("input").value = output;
             shift = false;
         }
-        
+
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     main();
 });
